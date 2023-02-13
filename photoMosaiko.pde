@@ -5,6 +5,7 @@ int minMosaicSize = 100;
 int maxMosaicSize = 400;
 
 PImage img;
+Effects effects = new Effects();
 
 ArrayList<MosaikRecord> records = new ArrayList<MosaikRecord>();
 
@@ -28,4 +29,15 @@ void keyPressed() {
   if (key == 'u') {
     img = undoLastMosaik(img);
   }
+}
+
+PImage applyEffect(PImage img) {
+  /*
+    This function controls which effect is applied to the rectangles that are
+    being swapped. It's called inside the swapZones function, when the
+    rectangles are being "extracted" and then swapped.
+
+    If no effect is desired, simply return the img parameter.
+  */
+  return effects.invertImage(img);
 }

@@ -13,8 +13,8 @@ PImage swapZones(PImage imgSrc) {
   records.add(r);
 
   // Save the squares in temporary images
-  PImage tmp1 = img.get(r.x-r.sx, r.y-r.sy/2, r.sx, r.sy);
-  PImage tmp2 = img.get(r.x,      r.y-r.sy/2, r.sx, r.sy);
+  PImage tmp1 = applyEffect(img.get(r.x-r.sx, r.y-r.sy/2, r.sx, r.sy));
+  PImage tmp2 = applyEffect(img.get(r.x,      r.y-r.sy/2, r.sx, r.sy));
 
   // Copy the squares in the new positions
   img.copy(tmp1, 0, 0, r.sx, r.sy, r.x,      r.y-r.sy/2, r.sx, r.sy);
