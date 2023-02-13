@@ -39,5 +39,12 @@ PImage applyEffect(PImage img) {
 
     If no effect is desired, simply return the img parameter.
   */
-  return effects.invertImage(img);
+  float choice = random(1);
+  if (choice < 0.33) {
+    return effects.invertButNotRed(img);
+  } else if (choice < 0.66) {
+    return effects.invertButNotGreen(img);
+  } else {
+    return effects.invertButNotBlue(img);
+  }
 }
