@@ -56,4 +56,18 @@ class Effects {
     inverted.updatePixels();
     return inverted;
   }
+  PImage invertWithCustomSin(PImage img) {
+    PImage inverted = createImage(img.width, img.height, RGB);
+    img.loadPixels();
+    inverted.loadPixels();
+    for (int i = 0; i < img.pixels.length; i++) {
+      inverted.pixels[i] = color(customSin(red(img.pixels[i])), customSin(green(img.pixels[i])), customSin(blue(img.pixels[i])));
+    }
+    inverted.updatePixels();
+    return inverted;
+
+  }
+  int customSin(float x) {
+    return (int) (255 * sin(PI/510 * x));
+  }
 }
