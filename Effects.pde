@@ -1,4 +1,7 @@
 class Effects {
+  /*
+    Class to store all the possible effects applied to an image.
+  */
   PImage invert(PImage img) {
     PImage inverted = createImage(img.width, img.height, RGB);
     img.loadPixels();

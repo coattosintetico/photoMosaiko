@@ -1,18 +1,33 @@
+/*
+Sketch to scramble an image by cutting random squares (mosaiks) and swapping
+them. The image can be restored afterwards, because the mosaiks' positions are
+being kept.
+
+The mosaiks get modified by the applyEffect function.
+
+Controls:
+- SPACEBAR: swap two mosaiks
+- u: undo the last change
+*/
+
 float stdDev = 300;
 float mean = 600;
 
-int minMosaicSize = 100;
+int minMosaicSize = 50;
 int maxMosaicSize = 400;
 
 PImage img;
 Effects effects = new Effects();
 
+// The mosaiks are going to be stored in an arraylist to be rebuilt later
+// The class MosaikRecord holds the information about the mosaik (position,
+// size, etc)
 ArrayList<MosaikRecord> records = new ArrayList<MosaikRecord>();
 
 void setup() {
-  size(1200, 1200);
+  size(1200, 1200); // the image must be pre-resized to match the canvas size
   img = loadImage("face.jpg");
-  frameRate(240);
+  frameRate(240); // don't cap the framerate at 60
 }
 
 void draw() {
@@ -20,12 +35,10 @@ void draw() {
   image(img, 0, 0);
 }
 
-// Every time the space bar is pressed, execute the swapZones function
 void keyPressed() {
   if (key == ' ') {
     img = swapZones(img);
   }
-  // Undo the last swap if the 'u' key is pressed
   if (key == 'u') {
     img = undoLastMosaik(img);
   }
